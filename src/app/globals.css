@@ -253,4 +253,13 @@ body {
       outline: 3px solid var(--primary);
     }
   }
+
+  /* Fix image resize button alignment */
+  .ProseMirror-selectednode {
+    div {
+      div img {
+        margin-top: 24px;
+      }
+    }
+  }
 }
