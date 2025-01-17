@@ -5,6 +5,8 @@ import StarterKit from '@tiptap/starter-kit'
 import TaskItem from '@tiptap/extension-task-item'
 import TaskList from '@tiptap/extension-task-list'
 import Underline from '@tiptap/extension-underline'
+import Fontfamily from '@tiptap/extension-font-family'
+import TextStyle from '@tiptap/extension-text-style'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
@@ -54,6 +56,8 @@ export const Editor = () => {
       TaskList,
       TaskItem.configure({ nested: true }),
       Underline,
+      Fontfamily,
+      TextStyle,
       Table,
       TableCell,
       TableHeader,
