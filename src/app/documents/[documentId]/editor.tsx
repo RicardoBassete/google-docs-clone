@@ -7,6 +7,7 @@ import TaskList from '@tiptap/extension-task-list'
 import Underline from '@tiptap/extension-underline'
 import Fontfamily from '@tiptap/extension-font-family'
 import TextStyle from '@tiptap/extension-text-style'
+import Link from '@tiptap/extension-link'
 import Table from '@tiptap/extension-table'
 import TableCell from '@tiptap/extension-table-cell'
 import TableHeader from '@tiptap/extension-table-header'
@@ -62,6 +63,11 @@ export const Editor = () => {
       Underline,
       Fontfamily,
       TextStyle,
+      Link.configure({
+        openOnClick: false,
+        autolink: true,
+        defaultProtocol: 'https'
+      }),
       Table,
       TableCell,
       TableHeader,
