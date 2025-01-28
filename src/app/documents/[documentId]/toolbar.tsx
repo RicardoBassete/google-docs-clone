@@ -47,7 +47,6 @@ import {
 
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
-import TextAlign from '@tiptap/extension-text-align'
 
 interface ToolbarButtonProps {
   onClick?: () => void
