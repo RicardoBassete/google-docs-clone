@@ -1,0 +1,65 @@
+# https://taskfile.dev
+
+version: '3'
+
+tasks:
+  default:
+    desc: List all tasks
+    silent: true
+    cmds:
+      - task --list-all
+
+  start:
+    desc: Runs 'next start'
+    silent: true
+    deps:
+      - build
+    cmd: bun start
+
+  build:
+    desc: Runs 'next build'
+    sources:
+      - ./src/**/*
+    status:
+      - test -d .next # triggers if .next does not exists
+    deps:
+      - install
+    cmd: bun run build # 'bun build' triggers the bun bundler
+
+  dev:
+    desc: Runs 'next dev'
+    deps:
+      - install
+    cmd: bun dev
+
+  lint:
+    desc: Runs 'next lint'
+    silent: true
+    deps:
+      - install
+    cmd: bun lint
+
+  install:
+    desc: Install depencencies
+    status:
+      - test -d node_modules # triggers if node_modules does not exists
+    sources:
+      - package.json
+      - bun.lock
+    cmds:
+      - rm -rf node_modules
+      - bun install
+
+  reset:
+    desc: Remove 'node_modules', '.next' and '.task' directories
+    silent: true
+    cmds:
+      - rm -rf node_modules
+      - rm -rf .next
+      - rm -rf .task
+
+  clean:
+    desc: Remove '.next' directory
+    silent: true
+    cmds:
+      - rm -rf .next
