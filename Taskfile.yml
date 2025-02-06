@@ -20,6 +20,10 @@ tasks:
     desc: Runs 'next build'
     sources:
       - ./src/**/*
+      - ./tailwind.config.ts
+      - ./next.config.ts
+      - ./tsconfig.json
+      - ./postcss.config.mjs
     status:
       - test -d .next # triggers if .next does not exists
     deps:
