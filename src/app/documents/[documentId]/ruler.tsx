@@ -15,7 +15,7 @@ const Marker = (props: MarkerProps) => {
   const { position, isLeft, isDragging, onMouseDown, onDoubleClick } = props
   return (
     <div
-      className="absolute top-0 w-4 h-full cursor-ew-resize z-[5] group -ml-2"
+      className="absolute top-0 w-4 h-full cursor-ew-resize z-5 group -ml-2"
       style={{ [isLeft ? 'left' : 'right']: `${position}px` }}
       onMouseDown={onMouseDown}
       onDoubleClick={onDoubleClick}
