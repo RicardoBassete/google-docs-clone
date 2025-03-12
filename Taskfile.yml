@@ -36,6 +36,12 @@ tasks:
       - install
     cmd: bun dev
 
+  db:
+    desc: Runs 'convex dev'
+    deps:
+      - install
+    cmd: bun db
+
   lint:
     desc: Runs 'next lint'
     silent: true
