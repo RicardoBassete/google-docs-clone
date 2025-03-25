@@ -1,18 +1,26 @@
 'use client'
 
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious
-} from '@/components/ui/carousel'
+import { useState } from 'react'
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
 
 import { templates } from '@/constants/templates'
+import { useRouter } from 'next/navigation'
+import { useMutation } from 'convex/react'
+import { api } from '@db/_generated/api'
 
 export const TemplatesGallery = () => {
-  const isCreating = false
+  const [isCreating, setIsCreating] = useState(false)
+  const router = useRouter()
+  const create = useMutation(api.documents.create)
+
+  const onTemplateClick = (title: string, initialContent: string) => {
+    setIsCreating(true)
+
+    create({ title, initialContent })
+      .then(documentId => router.push(`/documents/${documentId}`))
+      .finally(() => setIsCreating(false))
+  }
 
   return (
     <div className="bg-[#f1f3f4]">
@@ -26,14 +34,11 @@ export const TemplatesGallery = () => {
                 className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 2xl:basis-[14.285714%]"
               >
                 <div
-                  className={cn(
-                    'aspect-[3/4] flex flex-col gap-y-2.5',
-                    isCreating && 'pointer-events-none opacity-50'
-                  )}
+                  className={cn('aspect-[3/4] flex flex-col gap-y-2.5', isCreating && 'pointer-events-none opacity-50')}
                 >
                   <button
                     disabled={isCreating}
-                    onClick={() => {}}
+                    onClick={() => onTemplateClick(template.label, '')} //TODO: Add initial content
                     style={{
                       backgroundImage: `url(${template.imageUrl})`,
                       backgroundSize: 'cover',
@@ -43,9 +48,7 @@ export const TemplatesGallery = () => {
                     className="size-full rounded-sm border transition flex flex-col items-center 
                     justify-center gap-y-4 bg-white hover:border-blue-500 hover:bg-blue-50"
                   />
-                  <p className="text-sm font-medium truncate">
-                    {template.label}
-                  </p>
+                  <p className="text-sm font-medium truncate">{template.label}</p>
                 </div>
               </CarouselItem>
             ))}
