@@ -21,7 +21,7 @@ export const DocumentMenu = (props: DocumentMenuProps) => {
           <MoreVertical className="size-4" />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent onClick={e => e.stopPropagation()}>
         <RenameDialog documentId={documentId} initialTitle={title}>
           {/*Prevents the remove document dialog from closing immediately after opening*/}
           <DropdownMenuItem onSelect={e => e.preventDefault()} onClick={e => e.stopPropagation()}>
