@@ -14,6 +14,18 @@ pnpm dev
 bun dev
 ```
 
+Or, if you have [Taskfile](https://taskfile.dev/) installed, you can run:
+
+```bash
+task dev
+```
+
+Ps: the tasks in the taskfile use [bun](https://bun.sh/)
+
+To list all task just run `task`
+
+---
+
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
