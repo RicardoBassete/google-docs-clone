@@ -1,5 +1,15 @@
-import { ExternalLinkIcon, FilePenIcon, MoreVertical, TrashIcon } from 'lucide-react'
-import { DropdownMenu, DropdownMenuItem, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import {
+  ExternalLinkIcon,
+  FilePenIcon,
+  MoreVertical,
+  TrashIcon
+} from 'lucide-react'
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger
+} from '@/components/ui/dropdown-menu'
 import { Button } from '@/components/ui/button'
 import { RemoveDialog } from '@/components/remove-dialog'
 import { RenameDialog } from '@/components/rename-dialog'
@@ -24,13 +34,19 @@ export const DocumentMenu = (props: DocumentMenuProps) => {
       <DropdownMenuContent onClick={e => e.stopPropagation()}>
         <RenameDialog documentId={documentId} initialTitle={title}>
           {/*Prevents the remove document dialog from closing immediately after opening*/}
-          <DropdownMenuItem onSelect={e => e.preventDefault()} onClick={e => e.stopPropagation()}>
+          <DropdownMenuItem
+            onSelect={e => e.preventDefault()}
+            onClick={e => e.stopPropagation()}
+          >
             <FilePenIcon className="size-4 mr-2" /> Rename
           </DropdownMenuItem>
         </RenameDialog>
         <RemoveDialog documentId={documentId}>
           {/*Prevents the remove document dialog from closing immediately after opening*/}
-          <DropdownMenuItem onSelect={e => e.preventDefault()} onClick={e => e.stopPropagation()}>
+          <DropdownMenuItem
+            onSelect={e => e.preventDefault()}
+            onClick={e => e.stopPropagation()}
+          >
             <TrashIcon className="size-4 mr-2" /> Remove
           </DropdownMenuItem>
         </RemoveDialog>

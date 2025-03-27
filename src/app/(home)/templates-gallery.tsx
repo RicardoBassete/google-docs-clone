@@ -1,7 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel'
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious
+} from '@/components/ui/carousel'
 import { cn } from '@/lib/utils'
 
 import { templates } from '@/constants/templates'
@@ -34,7 +40,10 @@ export const TemplatesGallery = () => {
                 className="pl-4 basis-1/2 sm:basis-1/3 md:basis-1/4 lg:basis-1/5 xl:basis-1/6 2xl:basis-[14.285714%]"
               >
                 <div
-                  className={cn('aspect-[3/4] flex flex-col gap-y-2.5', isCreating && 'pointer-events-none opacity-50')}
+                  className={cn(
+                    'aspect-[3/4] flex flex-col gap-y-2.5',
+                    isCreating && 'pointer-events-none opacity-50'
+                  )}
                 >
                   <button
                     disabled={isCreating}
@@ -48,7 +57,9 @@ export const TemplatesGallery = () => {
                     className="size-full rounded-sm border transition flex flex-col items-center 
                     justify-center gap-y-4 bg-white hover:border-blue-500 hover:bg-blue-50"
                   />
-                  <p className="text-sm font-medium truncate">{template.label}</p>
+                  <p className="text-sm font-medium truncate">
+                    {template.label}
+                  </p>
                 </div>
               </CarouselItem>
             ))}

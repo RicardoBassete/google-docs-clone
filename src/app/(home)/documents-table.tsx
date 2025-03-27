@@ -1,4 +1,11 @@
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow
+} from '@/components/ui/table'
 
 import { Doc } from '@db/_generated/dataModel'
 import { PaginationStatus } from 'convex/react'
@@ -55,7 +62,12 @@ export const DocumentsTable = (props: DocumentsTableProps) => {
         </Table>
       )}
       <div className="flex items-center justify-center">
-        <Button variant={'ghost'} size={'sm'} onClick={() => loadMore(5)} disabled={status !== 'CanLoadMore'}>
+        <Button
+          variant={'ghost'}
+          size={'sm'}
+          onClick={() => loadMore(5)}
+          disabled={status !== 'CanLoadMore'}
+        >
           {status === 'CanLoadMore' ? 'Load More' : 'End of results'}
         </Button>
       </div>

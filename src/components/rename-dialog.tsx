@@ -50,7 +50,9 @@ export const RenameDialog = (props: RenameDialogProps) => {
         <form onSubmit={onSubmit}>
           <DialogHeader>
             <DialogTitle>Rename document</DialogTitle>
-            <DialogDescription>Enter a new name for this document.</DialogDescription>
+            <DialogDescription>
+              Enter a new name for this document.
+            </DialogDescription>
           </DialogHeader>
           <div className="my-4">
             <Input
@@ -72,7 +74,11 @@ export const RenameDialog = (props: RenameDialogProps) => {
             >
               Cancel
             </Button>
-            <Button type="submit" disabled={isUpdating} onClick={e => e.stopPropagation()}>
+            <Button
+              type="submit"
+              disabled={isUpdating}
+              onClick={e => e.stopPropagation()}
+            >
               Save
             </Button>
           </DialogFooter>

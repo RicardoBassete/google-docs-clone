@@ -35,11 +35,14 @@ export const RemoveDialog = (props: RemoveDialogProps) => {
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your document.
+            This action cannot be undone. This will permanently delete your
+            document.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>
-          <AlertDialogCancel onClick={e => e.stopPropagation()}>Cancel</AlertDialogCancel>
+          <AlertDialogCancel onClick={e => e.stopPropagation()}>
+            Cancel
+          </AlertDialogCancel>
           <AlertDialogAction
             disabled={isRemoving}
             onClick={e => {
