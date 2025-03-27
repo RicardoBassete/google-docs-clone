@@ -10,14 +10,14 @@ tasks:
       - task --list-all
 
   start:
-    desc: Runs 'next start'
+    desc: Start production server
     silent: true
     deps:
       - build
     cmd: bun start
 
   build:
-    desc: Runs 'next build'
+    desc: Builds the app
     sources:
       - ./src/**/*
       - ./tailwind.config.ts
@@ -31,13 +31,13 @@ tasks:
     cmd: bun run build # 'bun build' triggers the bun bundler
 
   dev:
-    desc: Runs 'next dev'
+    desc: Runs next dev server
     deps:
       - install
     cmd: bun dev
 
   db:
-    desc: Runs 'convex dev'
+    desc: Runs convex sync cli
     deps:
       - install
     cmd: bun db
@@ -57,7 +57,6 @@ tasks:
       - package.json
       - bun.lock
     cmds:
-      - rm -rf node_modules
       - bun install
 
   reset:
