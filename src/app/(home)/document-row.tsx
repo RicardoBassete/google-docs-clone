@@ -2,8 +2,8 @@ import { SiGoogledocs } from 'react-icons/si'
 import { format } from 'date-fns'
 import { TableCell, TableRow } from '@/components/ui/table'
 import { Doc } from '@db/_generated/dataModel'
-import { Building2Icon, CircleUserIcon, MoreVertical } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { Building2Icon, CircleUserIcon } from 'lucide-react'
+import { DocumentMenu } from './document-menu'
 
 interface DocumentRowProps {
   document: Doc<'documents'>
@@ -11,6 +11,10 @@ interface DocumentRowProps {
 
 export const DocumentRow = (props: DocumentRowProps) => {
   const { document } = props
+
+  const onNewTabClick = (id: string) => {
+    window.open(`/documents/${id}`, '_blank')
+  }
 
   return (
     <TableRow className="cursor-pointer">
@@ -26,9 +30,7 @@ export const DocumentRow = (props: DocumentRowProps) => {
         {format(new Date(document._creationTime), 'MMM dd, yyyy')}
       </TableCell>
       <TableCell className="flex justify-end">
-        <Button variant={'ghost'} size={'icon'} className="rounded-full">
-          <MoreVertical className="size-4" />
-        </Button>
+        <DocumentMenu documentId={document._id} title={document.title} onNewTab={onNewTabClick} />
       </TableCell>
     </TableRow>
   )
