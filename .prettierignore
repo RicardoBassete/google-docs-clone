@@ -1,0 +1,8 @@
+# convex generated code
+convex/_generated
+
+# nextjs folder
+.next
+
+# shadcn ui components
+src/components/ui

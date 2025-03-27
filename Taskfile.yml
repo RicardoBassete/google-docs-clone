@@ -42,6 +42,12 @@ tasks:
       - install
     cmd: bun db
 
+  format:
+    desc: Runs prettier cli
+    deps:
+      - install
+    cmd: bunx prettier . --write
+
   lint:
     desc: Runs 'next lint'
     silent: true
