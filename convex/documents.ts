@@ -59,8 +59,28 @@ export const removeById = mutation({
 })
 
 export const get = query({
-  args: { paginationOpts: paginationOptsValidator },
+  args: {
+    paginationOpts: paginationOptsValidator,
+    search: v.optional(v.string())
+  },
   handler: async (ctx, args) => {
-    return await ctx.db.query('documents').paginate(args.paginationOpts)
+    const { paginationOpts, search } = args
+
+    const user = await ctx.auth.getUserIdentity()
+    if (!user) throw new ConvexError('Unauthorized')
+
+    if (search) {
+      return await ctx.db
+        .query('documents')
+        .withSearchIndex('search_title', q =>
+          q.search('title', search).eq('ownerId', user.subject)
+        )
+        .paginate(paginationOpts)
+    }
+
+    return await ctx.db
+      .query('documents')
+      .withIndex('by_owner_id', q => q.eq('ownerId', user.subject))
+      .paginate(paginationOpts)
   }
 })
