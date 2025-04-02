@@ -13,6 +13,7 @@ tasks:
     desc: Start production server
     silent: true
     deps:
+      - env
       - build
     cmd: bun start
 
@@ -33,12 +34,14 @@ tasks:
   dev:
     desc: Runs next dev server
     deps:
+      - env
       - install
     cmd: bun dev
 
   db:
     desc: Runs convex sync cli
     deps:
+      - env
       - install
     cmd: bun db
 
@@ -64,6 +67,12 @@ tasks:
       - bun.lock
     cmds:
       - bun install
+
+  env:
+    desc: Creates .env.local variables with empty values
+    status:
+      - test -f .env.local
+    cmd: cp env.example .env.local
 
   reset:
     desc: Remove 'node_modules', '.next' and '.task' directories
