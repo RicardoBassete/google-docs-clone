@@ -1,6 +1,8 @@
 'use client'
 
 import { useState } from 'react'
+import { toast } from 'sonner'
+
 import {
   Carousel,
   CarouselContent,
@@ -24,7 +26,11 @@ export const TemplatesGallery = () => {
     setIsCreating(true)
 
     create({ title, initialContent })
-      .then(documentId => router.push(`/documents/${documentId}`))
+      .then(documentId => {
+        toast.success('Document created')
+        router.push(`/documents/${documentId}`)
+      })
+      .catch(() => toast.error('Something went wrong'))
       .finally(() => setIsCreating(false))
   }
 

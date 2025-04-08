@@ -2,6 +2,7 @@
 
 import { useMutation } from 'convex/react'
 import React, { useState } from 'react'
+import { toast } from 'sonner'
 
 import {
   Dialog,
@@ -36,10 +37,13 @@ export const RenameDialog = (props: RenameDialogProps) => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsUpdating(true)
+
     update({ id: documentId, title: title.trim() || 'Untitled' })
-      .then(() => setOpen(false))
+      .catch(() => toast.error('Something went wrong'))
+      .then(() => toast.success('Document updated'))
       .finally(() => {
         setIsUpdating(false)
+        setOpen(false)
       })
   }
 
