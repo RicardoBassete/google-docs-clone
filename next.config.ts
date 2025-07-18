@@ -4,6 +4,11 @@ const nextConfig: NextConfig = {
   /* config options here */
   eslint: {
     ignoreDuringBuilds: true
+  },
+  experimental: {
+    reactCompiler: {
+      compilationMode: 'all'
+    }
   }
 }
 
