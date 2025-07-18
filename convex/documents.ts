@@ -115,3 +115,8 @@ export const get = query({
       .paginate(paginationOpts)
   }
 })
+
+export const getById = query({
+  args: { id: v.id('documents') },
+  handler: async (ctx, args) => await ctx.db.get(args.id)
+})
