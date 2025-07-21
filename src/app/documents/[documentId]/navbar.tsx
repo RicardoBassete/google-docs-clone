@@ -2,6 +2,8 @@
 
 import Image from 'next/image'
 import Link from 'next/link'
+
+import { Avatars } from './avatars'
 import { DocumentInput } from './document-input'
 
 import {
@@ -259,6 +261,7 @@ export const Navbar = () => {
         </div>
       </div>
       <div className="pl-6 flex gap-3 items-center">
+        <Avatars />
         <OrganizationSwitcher
           afterCreateOrganizationUrl="/"
           afterLeaveOrganizationUrl="/"
