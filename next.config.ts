@@ -4,12 +4,13 @@ const nextConfig: NextConfig = {
   /* config options here */
   eslint: {
     ignoreDuringBuilds: true
-  },
-  experimental: {
-    reactCompiler: {
-      compilationMode: 'all'
-    }
   }
+  // Remove react compiler because it was breaking shit
+  // experimental: {
+  //   reactCompiler: {
+  //     compilationMode: 'all'
+  //   }
+  // }
 }
 
 export default nextConfig
