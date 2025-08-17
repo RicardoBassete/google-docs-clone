@@ -8,8 +8,9 @@ import {
 } from '@liveblocks/react/suspense'
 import { useParams } from 'next/navigation'
 import { FullscreenLoader } from '@/components/fullscreen-loader'
-import { getUsers } from './actions'
+import { getUsers, getDocuments } from './actions'
 import { toast } from 'sonner'
+import { Id } from '@db/_generated/dataModel'
 
 type User = {
   id: string
@@ -40,7 +41,15 @@ export function Room({ children }: { children: ReactNode }) {
 
   return (
     <LiveblocksProvider
-      authEndpoint="/api/liveblocks-auth"
+      authEndpoint={async () => {
+        const endpoint = '/api/liveblocks-auth'
+        const room = params.documentId as string
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          body: JSON.stringify({ room })
+        })
+        return await response.json()
+      }}
       throttle={16}
       resolveUsers={({ userIds }) =>
         userIds.map(userId => users.find(user => user.id === userId))
@@ -56,7 +65,11 @@ export function Room({ children }: { children: ReactNode }) {
 
         return filteredUsers.map(user => user.id)
       }}
-      resolveRoomsInfo={() => []}
+      resolveRoomsInfo={async ({ roomIds }) => {
+        const documents = await getDocuments(roomIds as Id<'documents'>[])
+
+        return documents.map(doc => ({ id: doc.id, name: doc.name }))
+      }}
     >
       <RoomProvider id={params.documentId as string}>
         <ClientSideSuspense
