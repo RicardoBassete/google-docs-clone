@@ -33,7 +33,8 @@ interface Props {
 
 export const Editor = (props: Props) => {
   const liveblocks = useLiveblocksExtension({
-    initialContent: props.initialContent
+    initialContent: props.initialContent,
+    offlineSupport_experimental: true
   })
 
   const { setEditor } = useEditorStore()
