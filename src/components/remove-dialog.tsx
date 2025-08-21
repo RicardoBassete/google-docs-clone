@@ -21,6 +21,7 @@ import { Id } from '@db/_generated/dataModel'
 interface RemoveDialogProps {
   documentId: Id<'documents'>
   children: React.ReactNode
+  callback?: () => void
 }
 
 export const RemoveDialog = (props: RemoveDialogProps) => {
@@ -49,6 +50,9 @@ export const RemoveDialog = (props: RemoveDialogProps) => {
             onClick={e => {
               e.stopPropagation()
               setIsRemoving(true)
+              if (props.callback) {
+                props.callback()
+              }
               remove({ id: documentId })
                 .catch(() => toast.error('Something went wrong'))
                 .then(() => toast.success('Document removed'))
