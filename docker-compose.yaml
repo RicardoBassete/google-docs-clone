@@ -8,3 +8,9 @@ services:
     ports:
       - "3001:3000"
     restart: unless-stopped
+    networks:
+      - dockploy-network
+
+networks:
+  dockploy-network:
+    external: true
