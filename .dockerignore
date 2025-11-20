@@ -1,0 +1,16 @@
+Dockerfile
+.dockerignore
+node_modules
+.DS_Store
+.git
+.gitignore
+.vscode
+.idea
+.vercel
+*.tsbuildinfo
+next-env.d.ts
+.task
+npm-debug.log
+.next/
+!.next/static
+!.next/standalone
